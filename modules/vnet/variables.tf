@@ -1,17 +1,17 @@
 variable "vn_name" {
-    type=string
+  type = string
 }
 
 variable "resource_group_name" {
-    type=string
+  type = string
 }
 
 variable "location" {
-    type=string
+  type = string
 }
 
 variable "vn_address_space" {
-    type=string
+  type = string
 }
 
 variable "company" {
@@ -23,9 +23,13 @@ variable "environment" {
 }
 
 variable "name" {
-  type=string  
+  type = string
 }
 
 variable "product" {
+  type = string
+}
+
+variable "region" {
   type = string
 }
