@@ -9,6 +9,6 @@ resource "azurerm_network_security_group" "nsg" {
     region                    = var.location
     environment               = var.environment
     enable_auto_diag_settings = true
-    name                      = var.name
+    tag_name                      = var.tag_name
   }
 }

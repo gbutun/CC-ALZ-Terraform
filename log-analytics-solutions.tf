@@ -1,7 +1,7 @@
 module "rg_pri_mon_la_ws_sol_act" {
   source                = "./module/la-solutions"
   solution_name         = "AzureActivity"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
@@ -10,288 +10,246 @@ module "rg_pri_mon_la_ws_sol_act" {
 }
 
 module "rg_pri_mon_la_ws_sol_agw_anl" {
+  source                = "./module/la-solutions"
   solution_name         = "AzureAppGatewayAnalytics"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AzureAppGatewayAnalytics"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AzureAppGatewayAnalytics"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_act" {
+module "rg_pri_mon_la_ws_sol_act" {
+  source                = "./module/la-solutions"
   solution_name         = "AzureActivity"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AzureActivity"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AzureActivity"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_sec" {
+module "rg_pri_mon_la_ws_sol_sec" {
+  source                = "./module/la-solutions"
   solution_name         = "Security"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/Security"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/Security"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_ad_ass" {
+module "rg_pri_mon_la_ws_sol_ad_ass" {
+  source                = "./module/la-solutions"
   solution_name         = "ADAssessment"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
+  publisher             = "Microsoft"
+  product               = "OMSGallery/ADAssessment"
 
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/ADAssessment"
-  }
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_agt_hlt" {
+module "rg_pri_mon_la_ws_sol_agt_hlt" {
+  source                = "./module/la-solutions"
   solution_name         = "AgentHealthAssessment"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AgentHealthAssessment"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AgentHealthAssessment"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_ant_mlw" {
+module "rg_pri_mon_la_ws_sol_ant_mlw" {
+  source                = "./module/la-solutions"
   solution_name         = "AntiMalware"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AntiMalware"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AntiMalware"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_app_ins" {
+module "rg_pri_mon_la_ws_sol_app_ins" {
+  source                = "./module/la-solutions"
   solution_name         = "ApplicationInsights"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/ApplicationInsights"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/ApplicationInsights"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_sql" {
+module "rg_pri_mon_la_ws_sol_sql" {
+  source                = "./module/la-solutions"
   solution_name         = "AzureSQLAnalytics"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AzureSQLAnalytics"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AzureSQLAnalytics"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_dns" {
+module "rg_pri_mon_la_ws_sol_dns" {
+  source                = "./module/la-solutions"
   solution_name         = "DnsAnalytics"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/DnsAnalytics"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/DnsAnalytics"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_kv" {
+module "rg_pri_mon_la_ws_sol_kv" {
+  source                = "./module/la-solutions"
   solution_name         = "KeyVaultAnalytics"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/KeyVaultAnalytics"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/KeyVaultAnalytics"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_net_mon" {
+module "rg_pri_mon_la_ws_sol_net_mon" {
+  source                = "./module/la-solutions"
   solution_name         = "NetworkMonitoring"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/NetworkMonitoring"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/NetworkMonitoring"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_sql_ass" {
+module "rg_pri_mon_la_ws_sol_sql_ass" {
+  source                = "./module/la-solutions"
   solution_name         = "SQLAssessment"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/SQLAssessment"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/SQLAssessment"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_sql_adv_thr_pro" {
+module "rg_pri_mon_la_ws_sol_sql_adv_thr_pro" {
+  source                = "./module/la-solutions"
   solution_name         = "SQLAdvancedThreatProtection"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/SQLAdvancedThreatProtection"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/SQLAdvancedThreatProtection"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_sql_vul_ass" {
+module "rg_pri_mon_la_ws_sol_sql_vul_ass" {
+  source                = "./module/la-solutions"
   solution_name         = "SQLVulnerabilityAssessment"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/SQLVulnerabilityAssessment"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/SQLVulnerabilityAssessment"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_nsg_anl" {
+module "rg_pri_mon_la_ws_sol_nsg_anl" {
+  source                = "./module/la-solutions"
   solution_name         = "AzureNSGAnalytics"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AzureNSGAnalytics"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AzureNSGAnalytics"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_sol_aut" {
+module "rg_pri_mon_la_ws_sol_aut" {
+  source                = "./module/la-solutions"
   solution_name         = "AzureAutomation"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AzureAutomation"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AzureAutomation"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_alr_mng" {
+module "rg_pri_mon_la_ws_alr_mng" {
+  source                = "./module/la-solutions"
   solution_name         = "AlertManagement"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
+  publisher             = "Microsoft"
+  product               = "OMSGallery/AlertManagement"
 
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/AlertManagement"
-  }
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_wir_dat" {
+module "rg_pri_mon_la_ws_wir_dat" {
+  source                = "./module/la-solutions"
   solution_name         = "WireData2"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/WireData2"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/WireData2"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_chg_trc" {
+module "rg_pri_mon_la_ws_chg_trc" {
+  source                = "./module/la-solutions"
   solution_name         = "ChangeTracking"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/ChangeTracking"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/ChangeTracking"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_svc_map" {
+module "rg_pri_mon_la_ws_svc_map" {
+  source                = "./module/la-solutions"
   solution_name         = "ServiceMap"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/ServiceMap"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/ServiceMap"
 }
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_updates" {
+module "rg_pri_mon_la_ws_updates" {
+  source                = "./module/la-solutions"
   solution_name         = "Updates"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/Updates"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/Updates"
 }
 
 
-resource "azurerm_log_analytics_solution" "rg_pri_mon_la_ws_win_event_fw" {
+module "rg_pri_mon_la_ws_win_event_fw" {
+  source                = "./module/la-solutions"
   solution_name         = "WindowsEventForwarding"
-  location              = azurerm_resource_group.rg_pri.location
+  location              = module.rg_pri.location
   resource_group_name   = module.rg_pri.resource_group_name
   workspace_resource_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   workspace_name        = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/WindowsEventForwarding"
-  }
+  publisher             = "Microsoft"
+  product               = "OMSGallery/WindowsEventForwarding"
 }

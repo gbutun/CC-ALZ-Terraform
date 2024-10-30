@@ -23,7 +23,7 @@ variable "environment" {
   type = string
 }
 
-variable "name" {
+variable "tag_name" {
   type=string  
 }
 
