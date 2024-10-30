@@ -34,7 +34,7 @@ locals {
 }
 
 resource "azurerm_key_vault_certificate" "rg_pri_agw_kv_wef_cert" {
-  name      = "wef-cert"
+  name         = "wef-cert"
   key_vault_id = azurerm_key_vault.rg_pri_agw_kv.id
 
   certificate {
@@ -68,7 +68,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_agw_kv_wef_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -79,7 +79,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_agw_kv_wef_cert" {
 }
 
 resource "azurerm_key_vault_certificate" "rg_pri_agw_kv_wif_cert" {
-  name      = "wif-cert"
+  name         = "wif-cert"
   key_vault_id = azurerm_key_vault.rg_pri_agw_kv.id
 
   certificate {
@@ -113,7 +113,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_agw_kv_wif_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -124,7 +124,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_agw_kv_wif_cert" {
 }
 
 resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_wef_cert" {
-  name      = "wef-cert"
+  name         = "wef-cert"
   key_vault_id = azurerm_key_vault.rg_pri_kub_kv.id
 
   certificate {
@@ -158,7 +158,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_wef_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -170,7 +170,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_wef_cert" {
 
 
 resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_wif_cert" {
-  name      = "wif-cert"
+  name         = "wif-cert"
   key_vault_id = azurerm_key_vault.rg_pri_kub_kv.id
 
   certificate {
@@ -204,7 +204,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_wif_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -216,7 +216,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_wif_cert" {
 
 
 resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_argo_cd_cert" {
-  name      = "argo-cd-cert"
+  name         = "argo-cd-cert"
   key_vault_id = azurerm_key_vault.rg_pri_kub_kv.id
 
   certificate {
@@ -250,7 +250,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_argo_cd_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -263,7 +263,7 @@ resource "azurerm_key_vault_certificate" "rg_pri_kub_kv_argo_cd_cert" {
 #-- 
 
 resource "azurerm_key_vault_certificate" "rg_sec_agw_kv_wef_cert" {
-  name      = "wef-cert"
+  name         = "wef-cert"
   key_vault_id = azurerm_key_vault.rg_sec_agw_kv.id
 
   certificate {
@@ -297,7 +297,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_agw_kv_wef_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -308,7 +308,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_agw_kv_wef_cert" {
 }
 
 resource "azurerm_key_vault_certificate" "rg_sec_agw_kv_wif_cert" {
-  name      = "wif-cert"
+  name         = "wif-cert"
   key_vault_id = azurerm_key_vault.rg_sec_agw_kv.id
 
   certificate {
@@ -342,7 +342,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_agw_kv_wif_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -353,7 +353,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_agw_kv_wif_cert" {
 }
 
 resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_wef_cert" {
-  name      = "wef-cert"
+  name         = "wef-cert"
   key_vault_id = azurerm_key_vault.rg_sec_kub_kv.id
 
   certificate {
@@ -387,7 +387,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_wef_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -398,7 +398,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_wef_cert" {
 }
 
 resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_wif_cert" {
-  name      = "wif-cert"
+  name         = "wif-cert"
   key_vault_id = azurerm_key_vault.rg_sec_kub_kv.id
 
   certificate {
@@ -432,7 +432,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_wif_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long
@@ -443,7 +443,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_wif_cert" {
 }
 
 resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_argo_cd_cert" {
-  name      = "argo-cd-cert"
+  name         = "argo-cd-cert"
   key_vault_id = azurerm_key_vault.rg_sec_kub_kv.id
 
   certificate {
@@ -477,7 +477,7 @@ resource "azurerm_key_vault_certificate" "rg_sec_kub_kv_argo_cd_cert" {
       content_type = local.certificate_ssl.content_type
     }
   }
-  
+
   tags = {
     company     = var.company_name_long
     product     = local.product_name_long

@@ -30,7 +30,7 @@ resource "azurerm_container_registry" "rg_pri_sol_acr" {
     ]
   }
   georeplications {
-    location                = "Germany North"
+    location = "Germany North"
   }
 
   encryption {
@@ -42,7 +42,7 @@ resource "azurerm_container_registry" "rg_pri_sol_acr" {
   network_rule_set {
     default_action = local.acr.network_rule_set.action.deny
 
-    
+
     ip_rule {
       action   = local.acr.network_rule_set.action.allow
       ip_range = local.vrp_ist_new_ip_02
@@ -59,22 +59,22 @@ resource "azurerm_container_registry" "rg_pri_sol_acr" {
     }
 
     ip_rule {
-      action = local.acr.network_rule_set.action.allow
-      ip_range = local.vrp_con_reg_ip_02 
+      action   = local.acr.network_rule_set.action.allow
+      ip_range = local.vrp_con_reg_ip_02
     }
 
     ip_rule {
-      action = local.acr.network_rule_set.action.allow
+      action   = local.acr.network_rule_set.action.allow
       ip_range = local.vrp_con_reg_ip_03
     }
 
     ip_rule {
-      action = local.acr.network_rule_set.action.allow
+      action   = local.acr.network_rule_set.action.allow
       ip_range = local.vrp_con_reg_ip_04
     }
 
     ip_rule {
-      action = local.acr.network_rule_set.action.allow
+      action   = local.acr.network_rule_set.action.allow
       ip_range = local.vrp_con_reg_ip_05
     }
   }

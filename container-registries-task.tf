@@ -1,10 +1,10 @@
 locals {
   con_reg_task_settings = {
-    days_ago = 30
-    keep_images = 30
+    days_ago        = 30
+    keep_images     = 30
     acr_cli_version = "mcr.microsoft.com/acr/acr-cli:0.5"
-    agent_cpu = 2
-    timeout = 3600
+    agent_cpu       = 2
+    timeout         = 3600
 
     platform_specs = {
       architecture = "amd64"
@@ -21,14 +21,14 @@ resource "azurerm_container_registry_task" "rg_pri_sol_acr_daily_purge_task" {
   identity {
     type = local.resource_identity_type.system_assigned
   }
-  
+
   agent_setting {
     cpu = local.con_reg_task_settings.agent_cpu
   }
 
   registry_credential {
     custom {
-      identity = "[system]"
+      identity     = "[system]"
       login_server = azurerm_container_registry.rg_pri_sol_acr.login_server
     }
   }

@@ -12,10 +12,10 @@ locals {
 }
 
 resource "azurerm_mssql_failover_group" "rg_pri_sol_sql_failover_group" {
-  name                = local.sol_sql_failover_group.name
-  server_id         = azurerm_mssql_server.rg_pri_sol_sql.id
+  name      = local.sol_sql_failover_group.name
+  server_id = azurerm_mssql_server.rg_pri_sol_sql.id
   databases = [
-    azurerm_mssql_database.rg_pri_vc_db.id 
+    azurerm_mssql_database.rg_pri_vc_db.id
   ]
 
   partner_server {

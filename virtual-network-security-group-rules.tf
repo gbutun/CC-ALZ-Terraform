@@ -41,7 +41,7 @@ resource "azurerm_network_security_rule" "rg_pri_hub_vn_wef_agw_sub_nsg_vnet_int
   protocol                    = "*"
   source_port_range           = "*"
   destination_port_ranges     = ["80", "443"]
-  source_address_prefix     = "*"
+  source_address_prefix       = "*"
   destination_address_prefix  = "*"
 }
 
@@ -55,7 +55,7 @@ resource "azurerm_network_security_rule" "rg_pri_hub_vn_wef_agw_sub_nsg_vnet_ban
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges     = ["4443","8443"]
+  destination_port_ranges     = ["4443", "8443"]
   source_address_prefixes     = var.ziraatbank_servers
   destination_address_prefix  = "*"
 }
@@ -136,33 +136,33 @@ resource "azurerm_network_security_rule" "rg_pri_hub_vn_wef_agw_sub_nsg_vnet_den
 }
 
 resource "azurerm_network_security_rule" "rg_pri_spk_vn_sql_pe_int_sub_nsg_vnet_workload_inbound_rule" {
-  name                         = "pe-int-sub-wl-ir"
-  resource_group_name          = azurerm_resource_group.rg_pri.name
-  network_security_group_name  = azurerm_network_security_group.rg_pri_spk_vn_sql_pe_int_sub_nsg.name
-  description                  = "SQL PE Integration Subnet Inbound Rule"
-  priority                     = 100
-  direction                    = "Inbound"
-  access                       = "Allow"
-  protocol                     = "*"
-  source_port_range            = "*"
-  destination_port_range       = "1433"
-  source_address_prefix        = azurerm_subnet.rg_pri_spk_vn_wl_sub.address_prefixes[0]
-  destination_address_prefix = azurerm_subnet.rg_pri_spk_vn_sql_pe_int_sub.address_prefixes[0]
+  name                        = "pe-int-sub-wl-ir"
+  resource_group_name         = azurerm_resource_group.rg_pri.name
+  network_security_group_name = azurerm_network_security_group.rg_pri_spk_vn_sql_pe_int_sub_nsg.name
+  description                 = "SQL PE Integration Subnet Inbound Rule"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "1433"
+  source_address_prefix       = azurerm_subnet.rg_pri_spk_vn_wl_sub.address_prefixes[0]
+  destination_address_prefix  = azurerm_subnet.rg_pri_spk_vn_sql_pe_int_sub.address_prefixes[0]
 }
 
 resource "azurerm_network_security_rule" "rg_pri_spk_vn_sql_pe_int_sub_nsg_vnet_rls_inbound_rule" {
-  name                         = "pe-int-sub-rls-ir"
-  resource_group_name          = azurerm_resource_group.rg_pri.name
-  network_security_group_name  = azurerm_network_security_group.rg_pri_spk_vn_sql_pe_int_sub_nsg.name
-  description                  = "SQL PE Integration Subnet Inbound Rule"
-  priority                     = 200
-  direction                    = "Inbound"
-  access                       = "Allow"
-  protocol                     = "*"
-  source_port_range            = "*"
-  destination_port_range       = "1433"
-  source_address_prefix        = azurerm_subnet.rg_pri_spk_vn_rls_sub.address_prefixes[0]
-  destination_address_prefix = azurerm_subnet.rg_pri_spk_vn_sql_pe_int_sub.address_prefixes[0]
+  name                        = "pe-int-sub-rls-ir"
+  resource_group_name         = azurerm_resource_group.rg_pri.name
+  network_security_group_name = azurerm_network_security_group.rg_pri_spk_vn_sql_pe_int_sub_nsg.name
+  description                 = "SQL PE Integration Subnet Inbound Rule"
+  priority                    = 200
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "1433"
+  source_address_prefix       = azurerm_subnet.rg_pri_spk_vn_rls_sub.address_prefixes[0]
+  destination_address_prefix  = azurerm_subnet.rg_pri_spk_vn_sql_pe_int_sub.address_prefixes[0]
 }
 
 resource "azurerm_network_security_rule" "rg_pri_spk_vn_sql_pe_int_sub_nsg_vnet_deny_inbound_rule" {
@@ -235,7 +235,7 @@ resource "azurerm_network_security_rule" "rg_pri_spk_vn_wl_sub_nsg_rls_inbound_r
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges      = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
+  destination_port_ranges     = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
   source_address_prefix       = azurerm_subnet.rg_pri_spk_vn_rls_sub.address_prefixes[0]
   destination_address_prefix  = azurerm_subnet.rg_pri_spk_vn_wl_sub.address_prefixes[0]
 }
@@ -250,7 +250,7 @@ resource "azurerm_network_security_rule" "rg_pri_spk_vn_wl_sub_nsg_lb_inbound_ru
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_range     = "*"
+  destination_port_range      = "*"
   source_address_prefix       = "AzureLoadBalancer"
   destination_address_prefix  = azurerm_subnet.rg_pri_spk_vn_wl_sub.address_prefixes[0]
 }
@@ -310,7 +310,7 @@ resource "azurerm_network_security_rule" "rg_pri_spk_vn_wl_sub_nsg_sec_rls_inbou
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges      = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
+  destination_port_ranges     = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
   source_address_prefix       = azurerm_subnet.rg_sec_spk_vn_rls_sub.address_prefixes[0]
   destination_address_prefix  = azurerm_subnet.rg_pri_spk_vn_wl_sub.address_prefixes[0]
 }
@@ -374,7 +374,7 @@ resource "azurerm_network_security_rule" "rg_sec_hub_vn_wef_agw_sub_nsg_vnet_int
   protocol                    = "*"
   source_port_range           = "*"
   destination_port_ranges     = ["80", "443"]
-  source_address_prefix     = "*"
+  source_address_prefix       = "*"
   destination_address_prefix  = "*"
 }
 
@@ -388,7 +388,7 @@ resource "azurerm_network_security_rule" "rg_sec_hub_vn_wef_agw_sub_nsg_vnet_ban
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges     = ["4443","8443"]
+  destination_port_ranges     = ["4443", "8443"]
   source_address_prefixes     = var.ziraatbank_servers
   destination_address_prefix  = "*"
 }
@@ -469,33 +469,33 @@ resource "azurerm_network_security_rule" "rg_sec_hub_vn_wef_agw_sub_nsg_vnet_den
 }
 
 resource "azurerm_network_security_rule" "rg_sec_spk_vn_sql_pe_int_sub_nsg_vnet_workload_inbound_rule" {
-  name                         = "pe-int-sub-wl-ir"
-  resource_group_name          = azurerm_resource_group.rg_sec.name
-  network_security_group_name  = azurerm_network_security_group.rg_sec_spk_vn_sql_pe_int_sub_nsg.name
-  description                  = "SQL PE Integration Subnet Inbound Rule"
-  priority                     = 100
-  direction                    = "Inbound"
-  access                       = "Allow"
-  protocol                     = "*"
-  source_port_range            = "*"
-  destination_port_range       = "1433"
-  source_address_prefix        = azurerm_subnet.rg_sec_spk_vn_wl_sub.address_prefixes[0]
-  destination_address_prefix = azurerm_subnet.rg_sec_spk_vn_sql_pe_int_sub.address_prefixes[0]
+  name                        = "pe-int-sub-wl-ir"
+  resource_group_name         = azurerm_resource_group.rg_sec.name
+  network_security_group_name = azurerm_network_security_group.rg_sec_spk_vn_sql_pe_int_sub_nsg.name
+  description                 = "SQL PE Integration Subnet Inbound Rule"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "1433"
+  source_address_prefix       = azurerm_subnet.rg_sec_spk_vn_wl_sub.address_prefixes[0]
+  destination_address_prefix  = azurerm_subnet.rg_sec_spk_vn_sql_pe_int_sub.address_prefixes[0]
 }
 
 resource "azurerm_network_security_rule" "rg_sec_spk_vn_sql_pe_int_sub_nsg_vnet_rls_inbound_rule" {
-  name                         = "pe-int-sub-rls-ir"
-  resource_group_name          = azurerm_resource_group.rg_sec.name
-  network_security_group_name  = azurerm_network_security_group.rg_sec_spk_vn_sql_pe_int_sub_nsg.name
-  description                  = "SQL PE Integration Subnet Inbound Rule"
-  priority                     = 200
-  direction                    = "Inbound"
-  access                       = "Allow"
-  protocol                     = "*"
-  source_port_range            = "*"
-  destination_port_range       = "1433"
-  source_address_prefix        = azurerm_subnet.rg_sec_spk_vn_rls_sub.address_prefixes[0]
-  destination_address_prefix = azurerm_subnet.rg_sec_spk_vn_sql_pe_int_sub.address_prefixes[0]
+  name                        = "pe-int-sub-rls-ir"
+  resource_group_name         = azurerm_resource_group.rg_sec.name
+  network_security_group_name = azurerm_network_security_group.rg_sec_spk_vn_sql_pe_int_sub_nsg.name
+  description                 = "SQL PE Integration Subnet Inbound Rule"
+  priority                    = 200
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "1433"
+  source_address_prefix       = azurerm_subnet.rg_sec_spk_vn_rls_sub.address_prefixes[0]
+  destination_address_prefix  = azurerm_subnet.rg_sec_spk_vn_sql_pe_int_sub.address_prefixes[0]
 }
 
 resource "azurerm_network_security_rule" "rg_sec_spk_vn_sql_pe_int_sub_nsg_vnet_deny_inbound_rule" {
@@ -553,7 +553,7 @@ resource "azurerm_network_security_rule" "rg_sec_spk_vn_wl_sub_nsg_rls_inbound_r
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges      = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
+  destination_port_ranges     = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
   source_address_prefix       = azurerm_subnet.rg_pri_spk_vn_rls_sub.address_prefixes[0]
   destination_address_prefix  = azurerm_subnet.rg_sec_spk_vn_wl_sub.address_prefixes[0]
 }
@@ -568,7 +568,7 @@ resource "azurerm_network_security_rule" "rg_sec_spk_vn_wl_sub_nsg_sec_rls_inbou
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_ranges      = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
+  destination_port_ranges     = ["80", "443", "6443", "8080", "9090", "15672", "20001"]
   source_address_prefix       = azurerm_subnet.rg_sec_spk_vn_rls_sub.address_prefixes[0]
   destination_address_prefix  = azurerm_subnet.rg_sec_spk_vn_wl_sub.address_prefixes[0]
 }
@@ -583,7 +583,7 @@ resource "azurerm_network_security_rule" "rg_sec_spk_vn_wl_sub_nsg_lb_inbound_ru
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_range     = "*"
+  destination_port_range      = "*"
   source_address_prefix       = "AzureLoadBalancer"
   destination_address_prefix  = azurerm_subnet.rg_sec_spk_vn_wl_sub.address_prefixes[0]
 }

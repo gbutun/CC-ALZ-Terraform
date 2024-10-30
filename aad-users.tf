@@ -72,21 +72,21 @@ resource "azuread_user" "mob_cli_aad_user" {
 }
 
 data "azuread_user" "jmb_aad_users" {
-  for_each = toset(local.jumpbox_users)
+  for_each            = toset(local.jumpbox_users)
   user_principal_name = "${each.value}@${var.tenant_name}"
 }
 
 data "azuread_user" "rls_vm_admin_users" {
-  for_each = toset(local.rls_vm_admin_users)
+  for_each            = toset(local.rls_vm_admin_users)
   user_principal_name = "${each.value}@${var.tenant_name}"
 }
 
 data "azuread_user" "aks_users" {
-  for_each = toset(local.aks_users)
+  for_each            = toset(local.aks_users)
   user_principal_name = "${each.value}@${var.tenant_name}"
 }
 
 data "azuread_user" "aks_contributors" {
-  for_each = toset(local.aks_contributors)
+  for_each            = toset(local.aks_contributors)
   user_principal_name = "${each.value}@${var.tenant_name}"
 }

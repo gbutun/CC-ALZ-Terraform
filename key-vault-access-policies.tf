@@ -50,7 +50,7 @@ locals {
   aad_app_auto_identity_principal_key_permissions         = []
   aad_app_auto_identity_principal_secret_permissions      = ["List", "Get"]
   aad_app_auto_identity_principal_certificate_permissions = ["List", "Get"]
-  aad_app_auto_identity_principal_secret_set_permissions      = ["List", "Get", "Set"]
+  aad_app_auto_identity_principal_secret_set_permissions  = ["List", "Get", "Set"]
 }
 
 resource "azurerm_key_vault_access_policy" "rg_pri_kvs_service_principals" {

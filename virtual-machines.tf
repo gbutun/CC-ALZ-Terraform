@@ -23,18 +23,18 @@ locals {
 }
 
 resource "azurerm_windows_virtual_machine" "rg_pri_rls_vm" {
-  name                     = "${local.resource_prefix_rg_pri}-rls-vm-${var.product_unique}"
-  location                 = azurerm_resource_group.rg_pri.location
-  resource_group_name      = azurerm_resource_group.rg_pri.name
-  network_interface_ids    = [azurerm_network_interface.rg_pri_rls_vm_pvt_nic.id]
-  size                     = var.rg_pri_rls_vm_size
-  admin_username           = var.rg_pri_rls_vm_os_profile_admin_username
-  admin_password           = var.rg_pri_rls_vm_os_profile_admin_password
-  computer_name            = "${local.resource_prefix_rg_pri_only_environment_and_location}rlsvm${var.product_unique}"
-  provision_vm_agent       = true
-  enable_automatic_updates = false
-  patch_mode               = "AutomaticByPlatform"
-  patch_assessment_mode    = "AutomaticByPlatform"
+  name                                                   = "${local.resource_prefix_rg_pri}-rls-vm-${var.product_unique}"
+  location                                               = azurerm_resource_group.rg_pri.location
+  resource_group_name                                    = azurerm_resource_group.rg_pri.name
+  network_interface_ids                                  = [azurerm_network_interface.rg_pri_rls_vm_pvt_nic.id]
+  size                                                   = var.rg_pri_rls_vm_size
+  admin_username                                         = var.rg_pri_rls_vm_os_profile_admin_username
+  admin_password                                         = var.rg_pri_rls_vm_os_profile_admin_password
+  computer_name                                          = "${local.resource_prefix_rg_pri_only_environment_and_location}rlsvm${var.product_unique}"
+  provision_vm_agent                                     = true
+  enable_automatic_updates                               = false
+  patch_mode                                             = "AutomaticByPlatform"
+  patch_assessment_mode                                  = "AutomaticByPlatform"
   bypass_platform_safety_checks_on_user_schedule_enabled = true
 
   source_image_reference {
@@ -71,18 +71,18 @@ resource "azurerm_windows_virtual_machine" "rg_pri_rls_vm" {
 
 
 resource "azurerm_windows_virtual_machine" "rg_pri_jmb_vm" {
-  name                     = "${local.resource_prefix_rg_pri}-jmb-vm-${var.product_unique}"
-  location                 = azurerm_resource_group.rg_pri.location
-  resource_group_name      = azurerm_resource_group.rg_pri.name
-  network_interface_ids    = [azurerm_network_interface.rg_pri_jmb_vm_pub_nic.id]
-  size                     = var.rg_pri_jmb_vm_size
-  admin_username           = var.rg_pri_jmb_vm_os_profile_admin_username
-  admin_password           = var.rg_pri_jmb_vm_os_profile_admin_password
-  computer_name            = "${local.resource_prefix_rg_pri_only_environment_and_location}jmbvm${var.product_unique}"
-  provision_vm_agent       = true
-  enable_automatic_updates = false
-  patch_mode               = "AutomaticByPlatform"
-  patch_assessment_mode    = "AutomaticByPlatform"
+  name                                                   = "${local.resource_prefix_rg_pri}-jmb-vm-${var.product_unique}"
+  location                                               = azurerm_resource_group.rg_pri.location
+  resource_group_name                                    = azurerm_resource_group.rg_pri.name
+  network_interface_ids                                  = [azurerm_network_interface.rg_pri_jmb_vm_pub_nic.id]
+  size                                                   = var.rg_pri_jmb_vm_size
+  admin_username                                         = var.rg_pri_jmb_vm_os_profile_admin_username
+  admin_password                                         = var.rg_pri_jmb_vm_os_profile_admin_password
+  computer_name                                          = "${local.resource_prefix_rg_pri_only_environment_and_location}jmbvm${var.product_unique}"
+  provision_vm_agent                                     = true
+  enable_automatic_updates                               = false
+  patch_mode                                             = "AutomaticByPlatform"
+  patch_assessment_mode                                  = "AutomaticByPlatform"
   bypass_platform_safety_checks_on_user_schedule_enabled = true
 
   source_image_reference {

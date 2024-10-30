@@ -46,7 +46,7 @@ data "azurerm_resources" "rg_pri_auto_diag_enabled_network_security_groups" {
 }
 
 data "azurerm_resources" "aks_rg_pri_auto_diag_enabled_network_security_groups" {
-  type                = local.resource_types.network_security_group  
+  type                = local.resource_types.network_security_group
   resource_group_name = local.aks.rg_pri_node_resource_group_name
 
   required_tags = {
@@ -324,7 +324,7 @@ data "azurerm_resources" "rg_sec_auto_diag_enabled_network_security_groups" {
 }
 
 data "azurerm_resources" "aks_rg_sec_auto_diag_enabled_network_security_groups" {
-  type                = local.resource_types.network_security_group  
+  type                = local.resource_types.network_security_group
   resource_group_name = local.aks.rg_sec_node_resource_group_name
 
   required_tags = {

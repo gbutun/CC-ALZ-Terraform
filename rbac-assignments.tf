@@ -108,21 +108,21 @@ resource "azurerm_role_assignment" "rg_pri_log_sarg_pri_sol_sql_mng_id_role_assg
 }
 
 resource "azurerm_role_assignment" "rg_pri_mal_scn_sa_role_aad_app_aks_vc_ns_assg_01" {
-  principal_id                     = azuread_service_principal.aad_app_aks_vc_ns_01_service_principal.id
-  role_definition_name             = "Storage Blob Data Owner"
-  scope                            = azurerm_storage_account.rg_pri_mal_scn_sa.id
+  principal_id         = azuread_service_principal.aad_app_aks_vc_ns_01_service_principal.id
+  role_definition_name = "Storage Blob Data Owner"
+  scope                = azurerm_storage_account.rg_pri_mal_scn_sa.id
 }
 
 resource "azurerm_role_assignment" "rg_pri_acr_acr_task_role_assg_01" {
-  principal_id                     = azurerm_container_registry_task.rg_pri_sol_acr_daily_purge_task.identity[0].principal_id
-  role_definition_name             = "AcrPull"
-  scope                            = azurerm_container_registry.rg_pri_sol_acr.id
+  principal_id         = azurerm_container_registry_task.rg_pri_sol_acr_daily_purge_task.identity[0].principal_id
+  role_definition_name = "AcrPull"
+  scope                = azurerm_container_registry.rg_pri_sol_acr.id
 }
 
 resource "azurerm_role_assignment" "rg_pri_acr_acr_task_role_assg_02" {
-  principal_id                     = azurerm_container_registry_task.rg_pri_sol_acr_daily_purge_task.identity[0].principal_id
-  role_definition_name             = "AcrDelete"
-  scope                            = azurerm_container_registry.rg_pri_sol_acr.id
+  principal_id         = azurerm_container_registry_task.rg_pri_sol_acr_daily_purge_task.identity[0].principal_id
+  role_definition_name = "AcrDelete"
+  scope                = azurerm_container_registry.rg_pri_sol_acr.id
 }
 
 resource "azurerm_role_assignment" "rg_pri_aad_app_auto_role_assg_01" {
@@ -247,7 +247,7 @@ resource "azurerm_role_assignment" "rg_sec_log_sarg_sec_sol_sql_mng_id_role_assg
 }
 
 resource "azurerm_role_assignment" "rg_pri_mal_scn_sa_role_rg_sec_aad_app_aks_vc_ns_assg_01" {
-  principal_id                     = azuread_service_principal.rg_sec_aad_app_aks_vc_ns_01_service_principal.id
-  role_definition_name             = "Storage Blob Data Owner"
-  scope                            = azurerm_storage_account.rg_pri_mal_scn_sa.id
+  principal_id         = azuread_service_principal.rg_sec_aad_app_aks_vc_ns_01_service_principal.id
+  role_definition_name = "Storage Blob Data Owner"
+  scope                = azurerm_storage_account.rg_pri_mal_scn_sa.id
 }

@@ -91,9 +91,9 @@ data "azurerm_monitor_diagnostic_categories" "monitor_diagnostic_categories_mon_
 }
 
 data "azurerm_monitor_diagnostic_categories" "rg_pri_auto_diag_enabled_azure_firwalls" {
-  resource_id =  azurerm_firewall.rg_pri_frw.id
+  resource_id = azurerm_firewall.rg_pri_frw.id
 }
 
 data "azurerm_monitor_diagnostic_categories" "monitor_diagnostic_categories_traffic_managers" {
-  resource_id =  azurerm_traffic_manager_profile.rg_pri_mb_app_tmp.id
+  resource_id = azurerm_traffic_manager_profile.rg_pri_mb_app_tmp.id
 }

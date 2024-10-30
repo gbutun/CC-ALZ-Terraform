@@ -68,13 +68,13 @@ locals {
   vc_app_monitor_path = "/readiness"
 
   app_custom_domains = {
-    mb_app   = "mobile.${var.domain_name_suffix}",
+    mb_app = "mobile.${var.domain_name_suffix}",
     # sotp_app = "ext.sotp.${var.domain_name_suffix}",
-    ib_app   = "online.${var.domain_name_suffix}",
-    psd_app  = "psd2.${var.domain_name_suffix}"
-    psd_dev_app  = "psd2dev.${var.domain_name_suffix}"
-    svc_app  = "isa.${var.domain_name_suffix}",
-    bo_app   = "bo.${var.domain_name_suffix}",
-    hermes_api = "hermes.${var.domain_name_suffix}"
+    ib_app      = "online.${var.domain_name_suffix}",
+    psd_app     = "psd2.${var.domain_name_suffix}"
+    psd_dev_app = "psd2dev.${var.domain_name_suffix}"
+    svc_app     = "isa.${var.domain_name_suffix}",
+    bo_app      = "bo.${var.domain_name_suffix}",
+    hermes_api  = "hermes.${var.domain_name_suffix}"
   }
 }

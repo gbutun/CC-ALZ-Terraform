@@ -209,7 +209,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     backend_address_pool_name  = "wef-mb-be-ap-01"
     backend_http_settings_name = "be-https-st-mb-01"
     priority                   = 300
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   request_routing_rule {
     name                        = "rq-rt-rl-mb-01"
@@ -217,7 +217,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     http_listener_name          = "http-lstn-mb-80"
     redirect_configuration_name = "rq-rd-cfg-mb-01"
     priority                    = 290
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-mb-01"
@@ -286,7 +286,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     backend_address_pool_name  = "wif-svc-be-ap-01"
     backend_http_settings_name = "be-https-st-svc-01"
     priority                   = 310
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   # SVC_CONFIG:END
 
@@ -477,7 +477,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     backend_address_pool_name  = "wef-ib-be-ap-01"
     backend_http_settings_name = "be-https-st-ib-01"
     priority                   = 360
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   request_routing_rule {
     name                        = "rq-rt-rl-ib-01"
@@ -485,7 +485,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     http_listener_name          = "http-lstn-ib-80"
     redirect_configuration_name = "rq-rd-cfg-ib-01"
     priority                    = 350
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-ib-01"
@@ -583,7 +583,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     backend_address_pool_name  = "wef-psd2-be-ap-01"
     backend_http_settings_name = "be-https-st-psd2-01"
     priority                   = 380
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
 
   request_routing_rule {
@@ -592,7 +592,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     http_listener_name          = "http-lstn-psd2-80"
     redirect_configuration_name = "rq-rd-cfg-psd2-01"
     priority                    = 370
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-psd2-01"
@@ -690,7 +690,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     backend_address_pool_name  = "wef-psd2dev-be-ap-01"
     backend_http_settings_name = "be-https-st-psd2dev-01"
     priority                   = 400
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   request_routing_rule {
     name                        = "rq-rt-rl-psd2dev-01"
@@ -698,7 +698,7 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     http_listener_name          = "http-lstn-psd2dev-80"
     redirect_configuration_name = "rq-rd-cfg-psd2dev-01"
     priority                    = 390
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-psd2dev-01"
@@ -768,87 +768,87 @@ resource "azurerm_application_gateway" "rg_pri_wef_agw" {
     backend_address_pool_name  = "wif-vc-bo-be-ap-01"
     backend_http_settings_name = "be-https-st-vc-bo-01"
     priority                   = 420
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   # VC_BO_CONFIG:END
 
 
   # VC_BO_CONFIG 443:START
-   http_listener {
-     name                           = "https-lstn-vc-bo-443"
-     frontend_ip_configuration_name = "fe-ip-config-01"
-     frontend_port_name             = "fe-https-port-443"
-     protocol                       = "Https"
-     require_sni                    = true
-     ssl_certificate_name           = "prv-cert-ssl-wif"
-     host_name                      = local.app_custom_domains.bo_app
-     custom_error_configuration {
-       status_code           = "HttpStatus403"
-       custom_error_page_url = local.static_maintenance_page
-     }
-     custom_error_configuration {
-       status_code           = "HttpStatus502"
-       custom_error_page_url = local.static_maintenance_page
-     }
-   }
-     backend_address_pool {
-     name = "wif-vc-bo-be-ap-01-443"
-     ip_addresses = [
-       data.azurerm_lb.rg_pri_wl_aks_cl_pvt_lb.private_ip_address
-     ]
-   }
-   probe {
-     name                = "wif-vc-bo-prb-01-443"
-     host                = local.app_custom_domains.bo_app
-     protocol            = "Https"
-     path                = local.vc_app_monitor_path
-     interval            = 30
-     timeout             = 60
-     unhealthy_threshold = 3
-     match {
-       body        = ""
-       status_code = ["200"]
-     }
-   }
-   backend_http_settings {
-     name                  = "be-https-st-vc-bo-01-443"
-     cookie_based_affinity = "Disabled"
-     port                  = 443
-     protocol              = "Https"
-     request_timeout       = 60
-     probe_name            = "wif-vc-bo-prb-01-443"
-     host_name             = local.app_custom_domains.bo_app
-   }
+  http_listener {
+    name                           = "https-lstn-vc-bo-443"
+    frontend_ip_configuration_name = "fe-ip-config-01"
+    frontend_port_name             = "fe-https-port-443"
+    protocol                       = "Https"
+    require_sni                    = true
+    ssl_certificate_name           = "prv-cert-ssl-wif"
+    host_name                      = local.app_custom_domains.bo_app
+    custom_error_configuration {
+      status_code           = "HttpStatus403"
+      custom_error_page_url = local.static_maintenance_page
+    }
+    custom_error_configuration {
+      status_code           = "HttpStatus502"
+      custom_error_page_url = local.static_maintenance_page
+    }
+  }
+  backend_address_pool {
+    name = "wif-vc-bo-be-ap-01-443"
+    ip_addresses = [
+      data.azurerm_lb.rg_pri_wl_aks_cl_pvt_lb.private_ip_address
+    ]
+  }
+  probe {
+    name                = "wif-vc-bo-prb-01-443"
+    host                = local.app_custom_domains.bo_app
+    protocol            = "Https"
+    path                = local.vc_app_monitor_path
+    interval            = 30
+    timeout             = 60
+    unhealthy_threshold = 3
+    match {
+      body        = ""
+      status_code = ["200"]
+    }
+  }
+  backend_http_settings {
+    name                  = "be-https-st-vc-bo-01-443"
+    cookie_based_affinity = "Disabled"
+    port                  = 443
+    protocol              = "Https"
+    request_timeout       = 60
+    probe_name            = "wif-vc-bo-prb-01-443"
+    host_name             = local.app_custom_domains.bo_app
+  }
 
-   request_routing_rule {
-     name                       = "rq-rt-rl-vc-bo-02-443"
-     rule_type                  = "Basic"
-     http_listener_name         = "https-lstn-vc-bo-443"
-     backend_address_pool_name  = "wif-vc-bo-be-ap-01-443"
-     backend_http_settings_name = "be-https-st-vc-bo-01-443"
-     priority                   = 410
-     rewrite_rule_set_name = "rrs-block-404"
-   }
+  request_routing_rule {
+    name                       = "rq-rt-rl-vc-bo-02-443"
+    rule_type                  = "Basic"
+    http_listener_name         = "https-lstn-vc-bo-443"
+    backend_address_pool_name  = "wif-vc-bo-be-ap-01-443"
+    backend_http_settings_name = "be-https-st-vc-bo-01-443"
+    priority                   = 410
+    rewrite_rule_set_name      = "rrs-block-404"
+  }
 
   # # VC_BO_CONFIG 443:END
 
 
-rewrite_rule_set{
-  name = "rrs-block-404"
-  rewrite_rule{    
-    name = "rr-block-404"
-    rule_sequence = 1
-    condition {
-        variable =  "var_request_uri"
-        pattern = "/hcdetailed|/hc|/liveness|/metrics"
+  rewrite_rule_set {
+    name = "rrs-block-404"
+    rewrite_rule {
+      name          = "rr-block-404"
+      rule_sequence = 1
+      condition {
+        variable    = "var_request_uri"
+        pattern     = "/hcdetailed|/hc|/liveness|/metrics"
         ignore_case = true
-        negate = false
-    }
-    url {
-      path = "/notfound"
+        negate      = false
+      }
+      url {
+        path = "/notfound"
+      }
     }
   }
-}
 
   tags = {
     company                   = var.company_name_long
@@ -1034,7 +1034,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     backend_address_pool_name  = "wef-mb-be-ap-01"
     backend_http_settings_name = "be-https-st-mb-01"
     priority                   = 300
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   request_routing_rule {
     name                        = "rq-rt-rl-mb-01"
@@ -1042,7 +1042,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     http_listener_name          = "http-lstn-mb-80"
     redirect_configuration_name = "rq-rd-cfg-mb-01"
     priority                    = 290
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-mb-01"
@@ -1111,7 +1111,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     backend_address_pool_name  = "wif-svc-be-ap-01"
     backend_http_settings_name = "be-https-st-svc-01"
     priority                   = 310
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   # SVC_CONFIG:END
 
@@ -1302,7 +1302,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     backend_address_pool_name  = "wef-ib-be-ap-01"
     backend_http_settings_name = "be-https-st-ib-01"
     priority                   = 360
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   request_routing_rule {
     name                        = "rq-rt-rl-ib-01"
@@ -1310,7 +1310,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     http_listener_name          = "http-lstn-ib-80"
     redirect_configuration_name = "rq-rd-cfg-ib-01"
     priority                    = 350
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-ib-01"
@@ -1321,7 +1321,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
   }
   # IB_CONFIG:END
 
-    #PSD2_CONFIG:START
+  #PSD2_CONFIG:START
   http_listener {
     name                           = "https-lstn-psd2-443"
     frontend_ip_configuration_name = "fe-ip-config-01"
@@ -1343,25 +1343,25 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     }
   }
 
- http_listener {
-  name                           = "http-lstn-psd2-80"
-  frontend_ip_configuration_name = "fe-ip-config-01"
-  frontend_port_name             = "fe-http-port-80"
-  protocol                       = "Http"
-  require_sni                    = false
-  ssl_certificate_name           = "prv-cert-ssl-wef"
-  host_name                      = local.app_custom_domains.psd_app
+  http_listener {
+    name                           = "http-lstn-psd2-80"
+    frontend_ip_configuration_name = "fe-ip-config-01"
+    frontend_port_name             = "fe-http-port-80"
+    protocol                       = "Http"
+    require_sni                    = false
+    ssl_certificate_name           = "prv-cert-ssl-wef"
+    host_name                      = local.app_custom_domains.psd_app
 
-  custom_error_configuration {
-    status_code           = "HttpStatus403"
-    custom_error_page_url = local.static_maintenance_page
-  }
+    custom_error_configuration {
+      status_code           = "HttpStatus403"
+      custom_error_page_url = local.static_maintenance_page
+    }
 
-  custom_error_configuration {
-    status_code           = "HttpStatus502"
-    custom_error_page_url = local.static_maintenance_page
+    custom_error_configuration {
+      status_code           = "HttpStatus502"
+      custom_error_page_url = local.static_maintenance_page
+    }
   }
- }
 
 
   backend_address_pool {
@@ -1394,14 +1394,14 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     host_name             = local.app_custom_domains.psd_app
   }
 
- backend_http_settings {
-  name                  = "be-http-st-psd2-01"
-  cookie_based_affinity = "Disabled"
-  port                  = 80
-  protocol              = "Http"
-  request_timeout       = 60
-  host_name             = local.app_custom_domains.psd_app
- }
+  backend_http_settings {
+    name                  = "be-http-st-psd2-01"
+    cookie_based_affinity = "Disabled"
+    port                  = 80
+    protocol              = "Http"
+    request_timeout       = 60
+    host_name             = local.app_custom_domains.psd_app
+  }
   request_routing_rule {
     name                       = "rq-rt-rl-psd2-02"
     rule_type                  = "Basic"
@@ -1409,17 +1409,17 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     backend_address_pool_name  = "wef-psd2-be-ap-01"
     backend_http_settings_name = "be-https-st-psd2-01"
     priority                   = 380
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
 
-  
+
   request_routing_rule {
     name                        = "rq-rt-rl-psd2-01"
     rule_type                   = "Basic"
     http_listener_name          = "http-lstn-psd2-80"
     redirect_configuration_name = "rq-rd-cfg-psd2-01"
     priority                    = 370
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-psd2-01"
@@ -1515,7 +1515,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     backend_address_pool_name  = "wef-psd2dev-be-ap-01"
     backend_http_settings_name = "be-https-st-psd2dev-01"
     priority                   = 400
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   request_routing_rule {
     name                        = "rq-rt-rl-psd2dev-01"
@@ -1523,7 +1523,7 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     http_listener_name          = "http-lstn-psd2dev-80"
     redirect_configuration_name = "rq-rd-cfg-psd2dev-01"
     priority                    = 390
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name       = "rrs-block-404"
   }
   redirect_configuration {
     name                 = "rq-rd-cfg-psd2dev-01"
@@ -1593,86 +1593,86 @@ resource "azurerm_application_gateway" "rg_sec_wef_agw" {
     backend_address_pool_name  = "wif-vc-bo-be-ap-01"
     backend_http_settings_name = "be-https-st-vc-bo-01"
     priority                   = 420
-    rewrite_rule_set_name = "rrs-block-404"
+    rewrite_rule_set_name      = "rrs-block-404"
   }
   # VC_BO_CONFIG:END
 
 
 
-   # VC_BO_CONFIG 443:START
-   http_listener {
-     name                           = "https-lstn-vc-bo-443"
-     frontend_ip_configuration_name = "fe-ip-config-01"
-     frontend_port_name             = "fe-https-port-443"
-     protocol                       = "Https"
-     require_sni                    = true
-     ssl_certificate_name           = "prv-cert-ssl-wif"
-     host_name                      = local.app_custom_domains.bo_app
-     custom_error_configuration {
-       status_code           = "HttpStatus403"
-       custom_error_page_url = local.static_maintenance_page
-     }
-     custom_error_configuration {
-       status_code           = "HttpStatus502"
-       custom_error_page_url = local.static_maintenance_page
-     }
-   }
-   backend_address_pool {
-     name = "wif-vc-bo-be-ap-01-443"
-     ip_addresses = [
-       data.azurerm_lb.rg_sec_wl_aks_cl_pvt_lb.private_ip_address
-     ]
-   }
-   probe {
-     name                = "wif-vc-bo-prb-01-443"
-     host                = local.app_custom_domains.bo_app
-     protocol            = "Https"
-     path                = local.vc_app_monitor_path
-     interval            = 30
-     timeout             = 60
-     unhealthy_threshold = 3
-     match {
-       body        = ""
-       status_code = ["200"]
-     }
-   }
-   backend_http_settings {
-     name                  = "be-https-st-vc-bo-01-443"
-     cookie_based_affinity = "Disabled"
-     port                  = 443
-     protocol              = "Https"
-     request_timeout       = 60
-     probe_name            = "wif-vc-bo-prb-01-443"
-     host_name             = local.app_custom_domains.bo_app
-   }
-   request_routing_rule {
-     name                       = "rq-rt-rl-vc-bo-02-443"
-     rule_type                  = "Basic"
-     http_listener_name         = "https-lstn-vc-bo-443"
-     backend_address_pool_name  = "wif-vc-bo-be-ap-01-443"
-     backend_http_settings_name = "be-https-st-vc-bo-01-443"
-     priority                   = 410
-     rewrite_rule_set_name = "rrs-block-404"
-   }
-   #VC_BO_CONFIG 443:END
-
-
-rewrite_rule_set{
-  name = "rrs-block-404"
-  rewrite_rule{    
-    name = "rr-block-404"
-    rule_sequence = 1
-    condition {
-        variable =  "var_request_uri"
-        pattern = "/hcdetailed|/hc|/liveness|/metrics"
-        ignore_case = true
-        negate = false
+  # VC_BO_CONFIG 443:START
+  http_listener {
+    name                           = "https-lstn-vc-bo-443"
+    frontend_ip_configuration_name = "fe-ip-config-01"
+    frontend_port_name             = "fe-https-port-443"
+    protocol                       = "Https"
+    require_sni                    = true
+    ssl_certificate_name           = "prv-cert-ssl-wif"
+    host_name                      = local.app_custom_domains.bo_app
+    custom_error_configuration {
+      status_code           = "HttpStatus403"
+      custom_error_page_url = local.static_maintenance_page
     }
-    url {
-      path = "/notfound"
+    custom_error_configuration {
+      status_code           = "HttpStatus502"
+      custom_error_page_url = local.static_maintenance_page
     }
   }
-}
+  backend_address_pool {
+    name = "wif-vc-bo-be-ap-01-443"
+    ip_addresses = [
+      data.azurerm_lb.rg_sec_wl_aks_cl_pvt_lb.private_ip_address
+    ]
+  }
+  probe {
+    name                = "wif-vc-bo-prb-01-443"
+    host                = local.app_custom_domains.bo_app
+    protocol            = "Https"
+    path                = local.vc_app_monitor_path
+    interval            = 30
+    timeout             = 60
+    unhealthy_threshold = 3
+    match {
+      body        = ""
+      status_code = ["200"]
+    }
+  }
+  backend_http_settings {
+    name                  = "be-https-st-vc-bo-01-443"
+    cookie_based_affinity = "Disabled"
+    port                  = 443
+    protocol              = "Https"
+    request_timeout       = 60
+    probe_name            = "wif-vc-bo-prb-01-443"
+    host_name             = local.app_custom_domains.bo_app
+  }
+  request_routing_rule {
+    name                       = "rq-rt-rl-vc-bo-02-443"
+    rule_type                  = "Basic"
+    http_listener_name         = "https-lstn-vc-bo-443"
+    backend_address_pool_name  = "wif-vc-bo-be-ap-01-443"
+    backend_http_settings_name = "be-https-st-vc-bo-01-443"
+    priority                   = 410
+    rewrite_rule_set_name      = "rrs-block-404"
+  }
+  #VC_BO_CONFIG 443:END
+
+
+  rewrite_rule_set {
+    name = "rrs-block-404"
+    rewrite_rule {
+      name          = "rr-block-404"
+      rule_sequence = 1
+      condition {
+        variable    = "var_request_uri"
+        pattern     = "/hcdetailed|/hc|/liveness|/metrics"
+        ignore_case = true
+        negate      = false
+      }
+      url {
+        path = "/notfound"
+      }
+    }
+  }
 
   tags = {
     company                   = var.company_name_long

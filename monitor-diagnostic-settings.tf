@@ -63,11 +63,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_subs" {
 
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_kvs" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_key_vaults.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_key_vaults.resources) : resource.id => resource.name } 
-  
-  name               = "${each.value}-diag-set"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_key_vaults.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_key_vaults.resources) : resource.id => resource.name }
+
+  name                       = "${each.value}-diag-set"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_key_vaults.log_category_types
@@ -84,11 +84,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_kvs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_laws" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_log_analytics_workspaces.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_log_analytics_workspaces.resources) : resource.id => resource.name } 
-  
-  name               = "${each.value}-diag-set"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_log_analytics_workspaces.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_log_analytics_workspaces.resources) : resource.id => resource.name }
+
+  name                       = "${each.value}-diag-set"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_log_analytics_workspaces.log_category_types
@@ -109,7 +109,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_recovery_services_vaults
 
   name                       = "${each.value}-diag-set-${var.product_unique}"
   target_resource_id         = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   log_analytics_destination_type = "AzureDiagnostics"
@@ -129,11 +129,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_recovery_services_vaults
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_agws" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_application_gateways.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_application_gateways.resources ) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_application_gateways.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_application_gateways.resources) : resource.id => resource.name }
 
   name                       = "${each.value}-diag-set-${var.product_unique}"
   target_resource_id         = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {
@@ -151,12 +151,12 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_agws" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_vpn_vng" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_vpn_gateways.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_vpn_gateways.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_vpn_gateways.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_vpn_gateways.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-diag-set-${var.product_unique}"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id  
+  name                       = "${each.value}-diag-set-${var.product_unique}"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_vpn_gateways.log_category_types
     content {
@@ -174,11 +174,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_vpn_vng" {
 
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_nsgs" {
-  for_each = { for  resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_network_security_groups.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_network_security_groups.resources,data.azurerm_resources.aks_rg_pri_auto_diag_enabled_network_security_groups.resources,data.azurerm_resources.aks_rg_sec_auto_diag_enabled_network_security_groups.resources) : resource.id => resource.name } 
-  
-  name               = "${each.value}-diag-set"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_network_security_groups.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_network_security_groups.resources, data.azurerm_resources.aks_rg_pri_auto_diag_enabled_network_security_groups.resources, data.azurerm_resources.aks_rg_sec_auto_diag_enabled_network_security_groups.resources) : resource.id => resource.name }
+
+  name                       = "${each.value}-diag-set"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_network_security_groups.log_category_types
@@ -195,11 +195,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_nsgs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sql_srvs" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_sql_servers.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_sql_servers.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_sql_servers.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_sql_servers.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-diag-set"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  name                       = "${each.value}-diag-set"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_sql_servers.log_category_types
@@ -216,11 +216,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_sql_srvs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sql_dbs" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_sql_databases.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_sql_databases.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_sql_databases.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_sql_databases.resources) : resource.id => resource.name }
 
-  name               = "${split("/", each.value)[1]}-diag-set"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  name                       = "${split("/", each.value)[1]}-diag-set"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_sql_databases.log_category_types
@@ -237,11 +237,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_sql_dbs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-diag-set"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  name                       = "${each.value}-diag-set"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_storage_accounts.log_category_types
@@ -258,11 +258,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_auto_accs" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_automation_accounts.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_automation_accounts.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_automation_accounts.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_automation_accounts.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-diag-set"
-  target_resource_id = each.key
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
+  name                       = "${each.value}-diag-set"
+  target_resource_id         = each.key
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {
@@ -280,11 +280,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_auto_accs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_nics" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_network_interfaces.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_network_interfaces.resources,data.azurerm_resources.aks_rg_pri_auto_diag_enabled_network_interfaces.resources,data.azurerm_resources.aks_rg_sec_auto_diag_enabled_network_interfaces.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_network_interfaces.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_network_interfaces.resources, data.azurerm_resources.aks_rg_pri_auto_diag_enabled_network_interfaces.resources, data.azurerm_resources.aks_rg_sec_auto_diag_enabled_network_interfaces.resources) : resource.id => resource.name }
 
   name                       = "${each.value}-diag-set"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {
@@ -303,11 +303,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_nics" {
 
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_vms" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_virtual_machines.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_virtual_machines.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_virtual_machines.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_virtual_machines.resources) : resource.id => resource.name }
 
   name                       = "${each.value}-diag-set"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {
@@ -325,11 +325,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_vms" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_pip" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_public_ips.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_public_ips.resources)   : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_public_ips.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_public_ips.resources) : resource.id => resource.name }
 
   name                       = "${each.value}-diag-set"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {
@@ -348,11 +348,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_pip" {
 
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_vns" {
-  for_each = { for resource in data.azurerm_resources.rg_pri_auto_diag_enabled_virtual_networks.resources: resource.id => resource.name }
+  for_each = { for resource in data.azurerm_resources.rg_pri_auto_diag_enabled_virtual_networks.resources : resource.id => resource.name }
 
   name                       = "${each.value}-diag-set"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {
@@ -392,11 +392,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_nhs" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs_blob" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-blob-diag-set"
-  target_resource_id = "${each.key}/blobServices/default/"
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  name                       = "${each.value}-blob-diag-set"
+  target_resource_id         = "${each.key}/blobServices/default/"
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_storage_accounts_blob.log_category_types
@@ -414,12 +414,12 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs_blob" {
 
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs_file" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-file-diag-set"
-  target_resource_id = "${each.key}/fileServices/default/"
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id  
+  name                       = "${each.value}-file-diag-set"
+  target_resource_id         = "${each.key}/fileServices/default/"
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_storage_accounts_file.log_category_types
     content {
@@ -435,11 +435,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs_file" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs_queue" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-queue-diag-set"
-  target_resource_id = "${each.key}/queueServices/default/"
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  name                       = "${each.value}-queue-diag-set"
+  target_resource_id         = "${each.key}/queueServices/default/"
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_storage_accounts_queue.log_category_types
@@ -456,12 +456,12 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs_queue" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sa_accs_table" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_storage_accounts.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_storage_accounts.resources) : resource.id => resource.name }
 
-  name               = "${each.value}-table-diag-set"
-  target_resource_id = "${each.key}/tableServices/default/"
-  storage_account_id = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id  
+  name                       = "${each.value}-table-diag-set"
+  target_resource_id         = "${each.key}/tableServices/default/"
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_storage_accounts_table.log_category_types
     content {
@@ -481,7 +481,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_aks_cl" {
 
   name                       = "${each.value}-aks-cl-diag-set"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = setsubtract(data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_aks_cl.log_category_types, local.diag_categories.subscription.aks_skipped_logs)
@@ -498,11 +498,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_aks_cl" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_sol_acr" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_sol_acr.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_sol_acr.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_sol_acr.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_sol_acr.resources) : resource.id => resource.name }
 
   name                       = "${each.value}-sol-acr-diag-set"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
   dynamic "enabled_log" {
     for_each = data.azurerm_monitor_diagnostic_categories.monitor_diagnostic_categories_sol_acr.log_category_types
@@ -540,11 +540,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_mon_ai" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_firewalls" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_azure_firwalls.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_azure_firwalls.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_azure_firwalls.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_azure_firwalls.resources) : resource.id => resource.name }
 
   name                       = "${each.value}-diag-set-${var.product_unique}"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id  
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {
@@ -562,11 +562,11 @@ resource "azurerm_monitor_diagnostic_setting" "diag_set_firewalls" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_set_traffic_managers" {
-  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_traffic_managers.resources,data.azurerm_resources.rg_sec_auto_diag_enabled_traffic_managers.resources) : resource.id => resource.name }
+  for_each = { for resource in concat(data.azurerm_resources.rg_pri_auto_diag_enabled_traffic_managers.resources, data.azurerm_resources.rg_sec_auto_diag_enabled_traffic_managers.resources) : resource.id => resource.name }
 
   name                       = "${each.value}-diag-set-${var.product_unique}"
   target_resource_id         = each.key
-  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name,each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id 
+  storage_account_id         = length(regexall(azurerm_resource_group.rg_pri.name, each.key)) > 0 ? azurerm_storage_account.rg_pri_log_sa.id : azurerm_storage_account.rg_sec_log_sa.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.rg_pri_mon_la_ws.id
 
   dynamic "enabled_log" {

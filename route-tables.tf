@@ -62,7 +62,7 @@ resource "azurerm_route_table" "rg_sec_hub_vn_jmb_sub_rt" {
   location                      = var.rg_sec_location_long
   resource_group_name           = azurerm_resource_group.rg_sec.name
   disable_bgp_route_propagation = false
-  
+
   dynamic "route" {
     for_each = local.vrp_agent_vm_ips
     content {

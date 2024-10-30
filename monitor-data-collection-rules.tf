@@ -58,8 +58,8 @@ resource "azurerm_monitor_data_collection_rule" "win_server_data_coll_rule_prf_m
     performance_counter {
       streams                       = [local.monitor_data_collection_rule.data_flow.stream.ms_perf, local.monitor_data_collection_rule.data_flow.stream.ms_insights_metrics]
       sampling_frequency_in_seconds = local.monitor_data_collection_rule.data_source.perf_counter.default_sampling_frequency_in_seconds
-      
-      name               = "ds-prf-cnt-cpu"
+
+      name = "ds-prf-cnt-cpu"
       counter_specifiers = [
         "\\Processor Information(_Total)\\% Processor Time",
         "\\Processor Information(_Total)\\% Privileged Time",
@@ -76,8 +76,8 @@ resource "azurerm_monitor_data_collection_rule" "win_server_data_coll_rule_prf_m
     performance_counter {
       streams                       = [local.monitor_data_collection_rule.data_flow.stream.ms_perf, local.monitor_data_collection_rule.data_flow.stream.ms_insights_metrics]
       sampling_frequency_in_seconds = local.monitor_data_collection_rule.data_source.perf_counter.default_sampling_frequency_in_seconds
-      
-      name               = "ds-prf-cnt-memory"
+
+      name = "ds-prf-cnt-memory"
       counter_specifiers = [
         "\\Memory\\% Committed Bytes In Use",
         "\\Memory\\Available Bytes",
@@ -94,8 +94,8 @@ resource "azurerm_monitor_data_collection_rule" "win_server_data_coll_rule_prf_m
     performance_counter {
       streams                       = [local.monitor_data_collection_rule.data_flow.stream.ms_perf, local.monitor_data_collection_rule.data_flow.stream.ms_insights_metrics]
       sampling_frequency_in_seconds = local.monitor_data_collection_rule.data_source.perf_counter.default_sampling_frequency_in_seconds
-      
-      name               = "ds-prf-cnt-disk"
+
+      name = "ds-prf-cnt-disk"
       counter_specifiers = [
         "\\LogicalDisk(_Total)\\% Disk Time",
         "\\LogicalDisk(_Total)\\% Disk Read Time",
@@ -120,8 +120,8 @@ resource "azurerm_monitor_data_collection_rule" "win_server_data_coll_rule_prf_m
     performance_counter {
       streams                       = [local.monitor_data_collection_rule.data_flow.stream.ms_perf, local.monitor_data_collection_rule.data_flow.stream.ms_insights_metrics]
       sampling_frequency_in_seconds = local.monitor_data_collection_rule.data_source.perf_counter.default_sampling_frequency_in_seconds
-      
-      name               = "ds-prf-cnt-network"
+
+      name = "ds-prf-cnt-network"
       counter_specifiers = [
         "\\Network Interface(*)\\Bytes Total/sec",
         "\\Network Interface(*)\\Bytes Sent/sec",
@@ -217,8 +217,8 @@ resource "azurerm_monitor_data_collection_rule" "all_server_data_coll_rule_vm_in
 
 resource "azurerm_monitor_data_collection_rule" "aks_server_data_coll_rule_prf_mtr" {
   name                = "${local.resource_prefix_rg_pri}-aks-server-data-coll-rule-prf-mtr-${var.product_unique}"
-  resource_group_name     = azurerm_resource_group.rg_pri.name
-  location                = azurerm_resource_group.rg_pri.location
+  resource_group_name = azurerm_resource_group.rg_pri.name
+  location            = azurerm_resource_group.rg_pri.location
 
   destinations {
     log_analytics {
@@ -250,7 +250,7 @@ resource "azurerm_monitor_data_collection_rule" "aks_server_data_coll_rule_prf_m
         }
       })
     }
-  }  
+  }
 
   tags = {
     company                   = var.company_name_long

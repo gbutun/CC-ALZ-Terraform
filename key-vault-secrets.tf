@@ -868,7 +868,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_d365_smtp_password_secret" {
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "D365 SMTP Password Secret"
-    tf_var       = "vc_app_d365_smtp_password_secret"
+    tf_var      = "vc_app_d365_smtp_password_secret"
   }
 
   depends_on = [
@@ -888,7 +888,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_pdf_converter_license_key_sec
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "PDF Converter License Key Secret"
-    tf_var       = "vc_app_pdf_converter_license_key_secret"
+    tf_var      = "vc_app_pdf_converter_license_key_secret"
   }
 
   depends_on = [
@@ -908,7 +908,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_rsa_private_key_secret" {
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "RSA Private Key Secret"
-    tf_var       = "vc_app_rsa_private_key_secret"
+    tf_var      = "vc_app_rsa_private_key_secret"
   }
 
   depends_on = [
@@ -928,7 +928,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_rsa_public_key_modulus_secret
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "RSA Public Key Modulus Secret"
-    tf_var       = "vc_app_rsa_public_key_modulus_secret"
+    tf_var      = "vc_app_rsa_public_key_modulus_secret"
   }
 
   depends_on = [
@@ -986,7 +986,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_soft_otp_rsa_private_key_secr
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "Soft Otp Rsa Private Key Secret"
-    tf_var       = "vc_app_soft_otp_rsa_private_key_secret"
+    tf_var      = "vc_app_soft_otp_rsa_private_key_secret"
   }
 
   depends_on = [
@@ -1006,7 +1006,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_sinch_api_token_secret" {
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "Sinch API Token Secret"
-    tf_var       = "vc_app_sinch_api_token_secret"
+    tf_var      = "vc_app_sinch_api_token_secret"
   }
 
   depends_on = [
@@ -1026,7 +1026,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_azure_storage_token_secret" {
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "Azure Storage Token Secret"
-    tf_var       = "vc_app_azure_storage_token_secret"
+    tf_var      = "vc_app_azure_storage_token_secret"
   }
 
   depends_on = [
@@ -1046,7 +1046,7 @@ resource "azurerm_key_vault_secret" "rg_pri_vc_app_adcon_api_password_secret" {
     region      = var.rg_pri_location_long
     environment = var.environment_long
     name        = "ADCon API Password Secret"
-    tf_var       = "vc_app_adcon_api_password_secret"
+    tf_var      = "vc_app_adcon_api_password_secret"
   }
 
   depends_on = [
@@ -1728,7 +1728,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_d365_smtp_password_secret" {
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "D365 SMTP Password Secret"
-    tf_var       = "vc_app_d365_smtp_password_secret"
+    tf_var      = "vc_app_d365_smtp_password_secret"
   }
 
   depends_on = [
@@ -1748,7 +1748,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_pdf_converter_license_key_sec
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "PDF Converter License Key Secret"
-    tf_var       = "vc_app_pdf_converter_license_key_secret"
+    tf_var      = "vc_app_pdf_converter_license_key_secret"
   }
 
   depends_on = [
@@ -1768,7 +1768,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_rsa_private_key_secret" {
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "RSA Private Key Secret"
-    tf_var       = "vc_app_rsa_private_key_secret"
+    tf_var      = "vc_app_rsa_private_key_secret"
   }
 
   depends_on = [
@@ -1788,7 +1788,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_rsa_public_key_modulus_secret
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "RSA Public Key Modulus Secret"
-    tf_var       = "vc_app_rsa_public_key_modulus_secret"
+    tf_var      = "vc_app_rsa_public_key_modulus_secret"
   }
 
   depends_on = [
@@ -1846,7 +1846,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_soft_otp_rsa_private_key_secr
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "Soft Otp Rsa Private Key Secret"
-    tf_var       = "vc_app_soft_otp_rsa_private_key_secret"
+    tf_var      = "vc_app_soft_otp_rsa_private_key_secret"
   }
 
   depends_on = [
@@ -1866,7 +1866,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_sinch_api_token_secret" {
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "Sinch API Token Secret"
-    tf_var       = "vc_app_sinch_api_token_secret"
+    tf_var      = "vc_app_sinch_api_token_secret"
   }
 
   depends_on = [
@@ -1886,7 +1886,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_azure_storage_token_secret" {
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "Azure Storage Token Secret"
-    tf_var       = "vc_app_azure_storage_token_secret"
+    tf_var      = "vc_app_azure_storage_token_secret"
   }
 
   depends_on = [
@@ -1906,7 +1906,7 @@ resource "azurerm_key_vault_secret" "rg_sec_vc_app_adcon_api_password_secret" {
     region      = var.rg_sec_location_long
     environment = var.environment_long
     name        = "ADCon API Password Secret"
-    tf_var       = "vc_app_adcon_api_password_secret"
+    tf_var      = "vc_app_adcon_api_password_secret"
   }
 
   depends_on = [
@@ -1976,7 +1976,7 @@ resource "azurerm_key_vault_secret" "rg_pri_agw_kv_wif_cert_value_secret" {
     azurerm_key_vault.rg_pri_agw_kv
   ]
 }
- 
+
 resource "azurerm_key_vault_secret" "rg_pri_agw_kv_wif_cert_password_secret" {
   name         = "wif-cert-password-secret"
   value        = var.wif_cert_password
@@ -2016,7 +2016,7 @@ resource "azurerm_key_vault_secret" "rg_pri_kub_kv_argo_cert_value_secret" {
     azurerm_key_vault.rg_pri_kub_kv
   ]
 }
- 
+
 resource "azurerm_key_vault_secret" "rg_pri_kub_kv_argo_cert_password_secret" {
   name         = "argo-cert-password-secret"
   value        = var.argo_cert_password
@@ -2041,7 +2041,7 @@ resource "azurerm_key_vault_secret" "rg_pri_kub_kv_argo_cert_password_secret" {
 resource "azurerm_key_vault_secret" "rg_pri_auto_kv_d365_availability_check_client_id_secret" {
   name         = "d365-availability-check-client-id-secret"
   value        = azuread_service_principal.aad_app_vt_d365_01_service_principal.client_id
-  key_vault_id = azurerm_key_vault.rg_pri_auto_kv.id 
+  key_vault_id = azurerm_key_vault.rg_pri_auto_kv.id
   content_type = "text/plain"
 
   tags = {
@@ -2053,7 +2053,7 @@ resource "azurerm_key_vault_secret" "rg_pri_auto_kv_d365_availability_check_clie
   }
 
   depends_on = [
-    azurerm_key_vault.rg_pri_auto_kv, 
+    azurerm_key_vault.rg_pri_auto_kv,
   ]
 }
 
@@ -2158,7 +2158,7 @@ resource "azurerm_key_vault_secret" "rg_sec_agw_kv_wif_cert_value_secret" {
     azurerm_key_vault.rg_sec_agw_kv
   ]
 }
- 
+
 resource "azurerm_key_vault_secret" "rg_sec_agw_kv_wif_cert_password_secret" {
   name         = "wif-cert-password-secret"
   value        = var.wif_cert_password
@@ -2198,7 +2198,7 @@ resource "azurerm_key_vault_secret" "rg_sec_kub_kv_argo_cert_value_secret" {
     azurerm_key_vault.rg_sec_kub_kv
   ]
 }
- 
+
 resource "azurerm_key_vault_secret" "rg_sec_kub_kv_argo_cert_password_secret" {
   name         = "argo-cert-password-secret"
   value        = var.argo_cert_password

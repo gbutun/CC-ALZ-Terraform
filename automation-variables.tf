@@ -18,8 +18,8 @@ resource "azurerm_automation_variable_string" "rg_pri_auto_d365_url_vr" {
   name                    = "d365-url-vr"
   resource_group_name     = azurerm_resource_group.rg_pri.name
   automation_account_name = azurerm_automation_account.rg_pri_auto.name
-  value                   = var.customer_d365_org_url    
-  encrypted = true
+  value                   = var.customer_d365_org_url
+  encrypted               = true
 }
 
 resource "azurerm_automation_variable_string" "rg_pri_auto_d365_avl_chk_aad_client_id_secret_vr" {
@@ -27,7 +27,7 @@ resource "azurerm_automation_variable_string" "rg_pri_auto_d365_avl_chk_aad_clie
   resource_group_name     = azurerm_resource_group.rg_pri.name
   automation_account_name = azurerm_automation_account.rg_pri_auto.name
   value                   = azurerm_key_vault_secret.rg_pri_auto_kv_d365_availability_check_client_id_secret.id
-  encrypted = true
+  encrypted               = true
 }
 
 resource "azurerm_automation_variable_string" "rg_pri_auto_d365_avl_chk_aad_client_password_01_secret_vr" {
@@ -35,5 +35,5 @@ resource "azurerm_automation_variable_string" "rg_pri_auto_d365_avl_chk_aad_clie
   resource_group_name     = azurerm_resource_group.rg_pri.name
   automation_account_name = azurerm_automation_account.rg_pri_auto.name
   value                   = azurerm_key_vault_secret.rg_pri_auto_kv_d365_availability_check_client_secret_secret.id
-  encrypted = true
+  encrypted               = true
 }

@@ -188,13 +188,13 @@ resource "azurerm_virtual_machine_extension" "rg_pri_rls_vm_ext_dep" {
   }
 }
 
-resource "azurerm_virtual_machine_extension" "rg_pri_rls_vm_ext_gcfg" { 
+resource "azurerm_virtual_machine_extension" "rg_pri_rls_vm_ext_gcfg" {
   virtual_machine_id         = azurerm_windows_virtual_machine.rg_pri_rls_vm.id
   name                       = "GuestConfigurationExtension"
   publisher                  = "Microsoft.GuestConfiguration"
   type                       = "ConfigurationforWindows"
   type_handler_version       = "1.0"
-  auto_upgrade_minor_version = true  
+  auto_upgrade_minor_version = true
   automatic_upgrade_enabled  = true
   tags = {
     name = "Guest Configuration Extension"
@@ -372,13 +372,13 @@ resource "azurerm_virtual_machine_extension" "rg_pri_jmb_vm_ext_dep" {
   }
 }
 
-resource "azurerm_virtual_machine_extension" "rg_pri_jmb_vm_ext_gcfg" { 
+resource "azurerm_virtual_machine_extension" "rg_pri_jmb_vm_ext_gcfg" {
   virtual_machine_id         = azurerm_windows_virtual_machine.rg_pri_jmb_vm.id
   name                       = "GuestConfigurationExtension"
   publisher                  = "Microsoft.GuestConfiguration"
   type                       = "ConfigurationforWindows"
   type_handler_version       = "1.0"
-  auto_upgrade_minor_version = true  
+  auto_upgrade_minor_version = true
   automatic_upgrade_enabled  = true
   tags = {
     name = "Guest Configuration Extension"

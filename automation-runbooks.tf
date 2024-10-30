@@ -1,12 +1,12 @@
 resource "azurerm_automation_runbook" "rg_pri_auto_chk_d365_avl_rb" {
-  name                            = "check-d365-avl-rb"
-  resource_group_name             = azurerm_resource_group.rg_pri.name
-  location                        = azurerm_resource_group.rg_pri.location
-  automation_account_name         = azurerm_automation_account.rg_pri_auto.name
-  log_verbose                     = var.auto_chk_d365_avl_rb_01_log_verbose
-  log_progress                    = var.auto_chk_d365_avl_rb_01_log_progress
-  description                     = var.auto_chk_d365_avl_rb_01_description
-  runbook_type                    = var.auto_chk_d365_avl_rb_01_runbook_type
+  name                    = "check-d365-avl-rb"
+  resource_group_name     = azurerm_resource_group.rg_pri.name
+  location                = azurerm_resource_group.rg_pri.location
+  automation_account_name = azurerm_automation_account.rg_pri_auto.name
+  log_verbose             = var.auto_chk_d365_avl_rb_01_log_verbose
+  log_progress            = var.auto_chk_d365_avl_rb_01_log_progress
+  description             = var.auto_chk_d365_avl_rb_01_description
+  runbook_type            = var.auto_chk_d365_avl_rb_01_runbook_type
 
   publish_content_link {
     uri = "https://www.office.com/"

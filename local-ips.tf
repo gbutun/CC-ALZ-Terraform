@@ -9,11 +9,11 @@ locals {
   vrp_con_reg_ip_04    = "51.116.254.131/32"
   vrp_con_reg_ip_05    = "51.116.254.132/32"
 
-  devops_svc_out_ip_01     = "13.107.6.0/24"
-  devops_svc_out_ip_02     = "13.107.9.0/24"
-  devops_svc_out_ip_03     = "13.107.42.0/24"
-  devops_svc_out_ip_04     = "13.107.43.0/24"
-  devops_svc_out_ip_05_ne  = "20.166.41.0/24"
+  devops_svc_out_ip_01    = "13.107.6.0/24"
+  devops_svc_out_ip_02    = "13.107.9.0/24"
+  devops_svc_out_ip_03    = "13.107.42.0/24"
+  devops_svc_out_ip_04    = "13.107.43.0/24"
+  devops_svc_out_ip_05_ne = "20.166.41.0/24"
   #   saas_agent_vm_07_pip_01  = "40.127.185.172/32"
   #   saas_agent_vm_09_pip_01  = "40.127.190.241/32"
 
@@ -58,7 +58,7 @@ locals {
   saas_agent_vm_20_pip_01 = "137.135.226.179" #{"VMOwner":"peycho.kostadinov@veripark.com","VMNo":"5"}
   saas_agent_vm_21_pip_01 = "13.79.244.83"    #{"VMOwner":"radoslav.dokuzov@veripark.com","VMNo":"11"}
   saas_agent_vm_23_pip_01 = "52.169.200.187"  #{"VMOwner":"gokhan.askin@veripark.com","VMNo":"23"}
-  saas_agent_vm_24_pip_01 = "40.69.218.103"  #{"VMOwner":"alperen.yilmaz@veripark.com","VMNo":"24"}
+  saas_agent_vm_24_pip_01 = "40.69.218.103"   #{"VMOwner":"alperen.yilmaz@veripark.com","VMNo":"24"}
 
 
   vrp_agent_vm_ips = [

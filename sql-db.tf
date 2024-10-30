@@ -6,8 +6,8 @@ locals {
     }
 
     short_term_retention_days = 35
-    
-    long_term_weekly_retention_policy = "PT0S"
+
+    long_term_weekly_retention_policy  = "PT0S"
     long_term_monthly_retention_policy = "P4M"
     long_term_yearly_retention_policy  = "PT0S"
 
@@ -42,7 +42,7 @@ resource "azurerm_mssql_database" "rg_pri_vc_db" {
   }
 
   long_term_retention_policy {
-    weekly_retention = local.sql_db.long_term_weekly_retention_policy
+    weekly_retention  = local.sql_db.long_term_weekly_retention_policy
     monthly_retention = local.sql_db.long_term_monthly_retention_policy
     week_of_year      = 1
   }

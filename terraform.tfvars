@@ -261,13 +261,13 @@ rg_sec_sol_sql_ep_per_database_max_capacity = 100
 
 rg_pri_auto_sku_name = "Basic"
 
-notification_email_description                 = "Veripark Notifications Email Credentials"
+notification_email_description = "Veripark Notifications Email Credentials"
 
 auto_notification_contact_email_group = ["mohan.g@veripark.com", "faheem.ullah@veripark.com"]
 
-auto_chk_d365_avl_rb_01_log_verbose = true
+auto_chk_d365_avl_rb_01_log_verbose  = true
 auto_chk_d365_avl_rb_01_log_progress = true
-auto_chk_d365_avl_rb_01_description = "The script for checking availabilty of D365 and sending availabilty telemetry to Application Insights"
+auto_chk_d365_avl_rb_01_description  = "The script for checking availabilty of D365 and sending availabilty telemetry to Application Insights"
 auto_chk_d365_avl_rb_01_runbook_type = "PowerShell"
 
 # AUTOMATION_ACCOUNT:END
@@ -305,11 +305,11 @@ rg_sec_nhb_ns_mob_nhb_apns_credential_application_mode = "Production" # Producti
 # LOCAL_NETWORK_GATEWAY:START
 
 ziraatag_hq_prod_lng_gateway_address     = "213.61.186.100"
-ziraatag_hq_prod_lng_address_space_array = ["10.10.120.0/24","10.10.120.121/32"]
+ziraatag_hq_prod_lng_address_space_array = ["10.10.120.0/24", "10.10.120.121/32"]
 ziraatag_hq_bck_lng_gateway_address      = "93.240.163.74"
-ziraatag_hq_bck_lng_address_space_array  = ["10.10.120.0/24","10.10.120.121/32"]
+ziraatag_hq_bck_lng_address_space_array  = ["10.10.120.0/24", "10.10.120.121/32"]
 ziraatag_drc_lng_gateway_address         = "212.185.105.154"
-ziraatag_drc_lng_address_space_array     = ["10.10.210.0/24","10.10.210.121/32"]
+ziraatag_drc_lng_address_space_array     = ["10.10.210.0/24", "10.10.210.121/32"]
 
 # LOCAL_NETWORK_GATEWAY:END
 
@@ -407,7 +407,7 @@ rg_sec_frw_sku_tier = "Standard"
 ziraat_de_hermes_api_ip = "10.10.120.121"
 
 # MAINTENANCE_CONFIGURATION:START
-  
+
 maintenance_configuration_start_time = "2024-08-30 02:00"
- 
+
 # MAINTENANCE_CONFIGURATION:END
